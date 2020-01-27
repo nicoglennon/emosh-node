@@ -10,7 +10,9 @@
     "database:create": "sequelize db:create",
     "database:drop": "sequelize db:drop",
     "database:migrate": "sequelize db:migrate",
+    "database:migrate:undo": "sequelize db:migrate:undo",
     "database:seed": "sequelize db:seed:all",
+    "database:seed:undo": "sequelize db:seed:undo:all",
     "database:setup": "npm run database:create && npm run database:migrate && npm run database:seed",
     "database:build": "npm run database:migrate && npm run database:seed",
     "build": "npm install && npm run database:build"
