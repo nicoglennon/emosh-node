@@ -6,7 +6,14 @@
   "scripts": {
     "start": "node index.js",
     "start-dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "database:create": "sequelize db:create",
+    "database:drop": "sequelize db:drop",
+    "database:migrate": "sequelize db:migrate",
+    "database:seed": "sequelize db:seed:all",
+    "database:setup": "npm run database:create && npm run database:migrate && npm run database:seed",
+    "database:build": "npm run database:migrate && npm run database:seed",
+    "build": "npm install && npm run database:build"
   },
   "author": "",
   "license": "ISC",

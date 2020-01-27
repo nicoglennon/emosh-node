@@ -2,9 +2,9 @@ require("dotenv").config();
 
 module.exports = {
   development: {
-    username: "postgres",
+    username: process.env.POSTGRES_USERNAME_DEV,
     password: null,
-    database: "emosh_development",
+    database: process.env.POSTGRES_DATABASE_DEV,
     host: "127.0.0.1",
     dialect: "postgres",
     operatorsAliases: false
