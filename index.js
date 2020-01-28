@@ -1,7 +1,28 @@
-require("dotenv").config();
+const { ApolloServer, gql } = require('apollo-server-express');
+const express = require('express');
+const routes = require('./routes');
+const typeDefsRaw = require('./graphql/typeDefs');
+const resolvers = require('./graphql/resolvers');
 
-const server = require("./server");
+const app = express();
 
-const PORT = process.env.PORT || 3300;
+const typeDefs = gql`
+  ${typeDefsRaw}
+`;
 
-server.listen(PORT, () => console.log(`Server is live at localhost:${PORT}`));
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+});
+
+server.applyMiddleware({ app });
+
+app.use('/api', routes);
+
+const PORT = 3000;
+
+app.listen(PORT, () =>
+  console.log(
+    `Express is live at localhost:${PORT} and graph endpoint at localhost:${PORT}${server.graphqlPath}`,
+  ),
+);
