@@ -3,6 +3,7 @@ const express = require('express');
 const routes = require('./routes');
 const typeDefsRaw = require('./graphql/typeDefs');
 const resolvers = require('./graphql/resolvers');
+const db = require('./database/models');
 
 const app = express();
 
@@ -13,6 +14,7 @@ const typeDefs = gql`
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  context: { db },
 });
 
 server.applyMiddleware({ app });
